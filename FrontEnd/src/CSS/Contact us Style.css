@@ -1,0 +1,229 @@
+/* Style of the content of contact Us page */
+.page-container {
+  box-sizing: border-box;
+  margin-left: 7%;
+  width: 80%;
+  height: max-content;
+  display: grid;
+  gap: 100px;
+  grid-template-columns: 1.5fr 3fr;
+}
+.section-1 {
+  grid-column: 1;
+  align-items: center;
+  height: max-content;
+  padding: 35px;
+  gap: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: "Poppins", serif;
+  font-style: normal;
+  font-size: smaller;
+}
+.section-1 .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
+}
+
+.section-1 img {
+  width: 30px;
+  height: 30px;
+}
+
+.section-1 span {
+  font-weight: 400;
+  font-size: 13px;
+}
+.homeText {
+  margin-top: 65px;
+  margin-bottom: 50px;
+  margin-left: 5%;
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: smaller;
+}
+.bottom-line2 {
+  width: 100%;
+  height: 2px;
+  background-color: #b9b9b9;
+}
+.section-1 h4 a {
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s;
+}
+
+.section-1 h4 a:hover {
+  color: #00a9e3;
+}
+/* Styles for Section 2 */
+.section-2 {
+  display: grid;
+  grid-template-rows: 0.5fr 3fr;
+  grid-column: 2;
+  width: 90%;
+  height: 100%;
+  padding: 35px;
+  gap: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.section-2 span {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row: 1;
+  gap: 10px;
+  font-family: "Poppins", serif;
+  font-style: normal;
+  font-size: smaller;
+  letter-spacing: 0.4px;
+  font-weight: 300;
+  border-radius: 4px;
+}
+.section-2 span input {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  font-family: "Poppins", serif;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 300;
+  border-radius: 4px;
+}
+.section-2 textarea {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  border: none;
+  font-family: "Poppins", serif;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 300;
+  border-radius: 4px;
+}
+.section-2 textarea {
+  grid-row: 2;
+}
+.section-2 input {
+  border: none;
+}
+.send-btn {
+  display: flex;
+  justify-self: end;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 56px;
+  margin-left: 79.3%;
+  background-color: #00a9e3;
+  color: white;
+  font-family: "Poppins", serif;
+  font-style: normal;
+  font-size: smaller;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+  border-radius: 4px;
+  border: none;
+}
+.send-btn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+/* Animation for fading out the page */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* When a link is clicked, apply fade-out animation */
+body.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+/* Optional: Style for profile link hover */
+a[href="/Account Settings/AccountSetting page.html"] img:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
+/* Media query for contact Us page */
+/* BreakPoint: 1400px */
+@media screen and (max-width: 1400px) {
+  .page-container {
+    gap: 10px;
+  }
+  .section-2 {
+    width: 100%;
+  }
+}
+/* BreakPoint: 1000px */
+@media screen and (max-width: 1000px) {
+  .page-container {
+    grid-template-columns: 1fr;
+  }
+  .section-1 {
+    grid-column: 1;
+    align-items: center;
+    height: max-content;
+    padding: 35px;
+    gap: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: "Poppins", serif;
+    font-style: normal;
+    font-size: smaller;
+  }
+  .section-2 {
+    display: grid;
+    grid-template-rows: 0.5fr 3fr;
+    grid-column: 1;
+    grid-row: 2;
+    height: 85%;
+    padding: 35px;
+    gap: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+@media screen and (max-width: 650px) {
+  .page-container {
+    grid-template-columns: 1fr;
+  }
+  .section-1 {
+    grid-column: 1;
+    align-items: center;
+    height: max-content;
+    padding: 35px;
+    gap: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: "Poppins", serif;
+    font-style: normal;
+    font-size: smaller;
+    width: 100%;
+  }
+  .section-2 {
+    display: grid;
+    grid-template-rows: 0.5fr 3fr;
+    grid-column: 1;
+    grid-row: 2;
+    height: 85%;
+    padding: 35px;
+    gap: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+  }
+  .section-2 span {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row: 1;
+    gap: 10px;
+    font-family: "Poppins", serif;
+    font-style: normal;
+    font-size: smaller;
+    letter-spacing: 0.4px;
+    font-weight: 300;
+    border-radius: 4px;
+  }
+}

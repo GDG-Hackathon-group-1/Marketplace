@@ -1,0 +1,329 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: scroll;
+    font-family: "Sora", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+.sub-nav {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 5%;
+    margin-left: 100px;
+    margin-bottom: 5px;
+  }
+.product-list {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 9rem;
+    margin-right: 9rem;
+    margin-top: 3rem;
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.1);
+    padding: 1rem 5rem;
+}
+.prolist > .price{
+    margin-left: 4rem;
+}
+.product-list > .item > .img1 {
+    width: 40px;
+    height: 40px;
+    margin-top: 2px;
+}
+
+.product-list > .item > p {
+    display: flex;
+    position: relative;
+    left: 2rem;
+    top:3px;
+}
+
+.selected {
+    margin-top: 15px;
+}
+
+.product-list > .items {
+    position: relative;
+    top: 2px;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    padding: 0;
+}
+
+.cart-buttons > .button > input {
+    padding: 10px 20px;
+    background: #004f7d;
+    color: white;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cart-buttons > .button > input:hover {
+    background-color: #00a9e3;
+    border: none;
+}
+
+.cart-total {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: 150px;
+    margin-top: 80px;
+    box-sizing: border-box;
+    border: black solid;
+    margin-bottom: 11rem;                                                                                                                                                                                                                                  
+    height: max-content;   
+}
+
+.cart-total > .data {
+    display: flex;
+    border-top: 1px dashed; 
+}
+
+.cart-total > .data > p, h6 {
+    padding: 8px 80px; 
+}
+
+.cart-total > .Checkout > Link, input[type="button"] {
+    margin-right: 8.5rem;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #004f7d;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-total > .Checkout > Link, input[type="button"]:hover {
+    background-color: #00a9e3;   
+}
+
+.coupon {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+     right: 17rem;
+     bottom: 24rem;     
+}
+
+.coupon > .size {
+    padding: 0.9rem;
+}
+
+.coupon > .space {
+    margin-right: 1rem;
+    border-radius: 5px;    
+}
+
+.coupon > button {
+    background-color: #004f7d;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.coupon > button:hover {
+    background-color: #00a9e3;
+    border: none;
+}
+
+/* Media Queries */
+
+@media(max-width: 1200px){
+    .coupon {
+        right: auto; 
+        bottom: auto; 
+        justify-content: center;
+        margin-top: 20px; 
+        flex-wrap: wrap;  
+        position: static;
+   }
+   .cart-total {
+    margin-left: 0; 
+    align-items: center; 
+    margin-top: 40px;
+    margin-bottom: 5rem; 
+    padding-left: 1rem; 
+    padding-right: 1rem; 
+    width: auto; 
+    border-width: thin; 
+}
+
+}
+@media (max-width: 900px) {
+   
+ .prolist{
+    font-weight: 500;
+ }
+ 
+    .product-list > .item > p {
+        left: 0; 
+        bottom: auto; 
+        
+        margin-bottom: 10px; 
+    }
+
+    .cart-total {
+        margin-left: 0; 
+        align-items: center; 
+        margin-top: 40px;
+        margin-bottom: 5rem; 
+        padding-left: 1rem; 
+        padding-right: 1rem; 
+        width: auto; 
+        border-width: thin; 
+    }
+
+    .cart-total > .data > p, h5 {
+        padding: 8px 20px; 
+        font-size: small; 
+    }
+
+    .cart-total > .Checkout > input {
+        margin-right: 0;
+        width: auto; 
+        padding-left: 5px; 
+        padding-right: 5px; 
+        margin-bottom: 20px; 
+        align-self: center;
+    }
+
+    .coupon {
+        right: auto; 
+        bottom: auto; 
+        justify-content: center;
+        margin-top: 20px; 
+        flex-wrap: wrap;  
+        position: static;
+   }
+}
+
+@media (max-width: 768px) {
+   .product-list {
+       margin-left: 1rem;
+       margin-right: 1rem; 
+   }
+
+   .cart-total {
+       margin-top: 20px; 
+       padding-left: 0.5rem; 
+       padding-right: 0.5rem; 
+   }
+
+   .cart-total > .data > p, h5 {
+       padding-left: 10px; 
+       padding-right: 10px; 
+   }
+
+   .cart-buttons {
+       flex-direction: column; 
+       align-items: center; 
+   }
+
+   .coupon {
+       flex-direction: column; 
+       
+       align-items: center; 
+       right:auto; 
+       bottom:auto; 
+   }
+}
+
+@media (max-width:528px) {
+    
+    .prolist{
+        font-size: 9px;
+       }
+     .selected{
+        font-size: 9px;
+     }  
+    
+}
+
+@media (max-width: 480px) {
+   .product-list > .item > .img1 {
+       width: 40px; 
+       height: 40px;
+       padding: 0;
+   }
+   .prolist > .price{
+    margin-left: 0;
+ }
+
+   .cart-buttons > .button > input {
+       width: 100%; 
+       padding-left: 15px; 
+       padding-right: 15px; 
+   }
+
+   .cart-total > .Checkout > input {
+       width: auto; 
+       padding-left: 8px; 
+       padding-right: 8px; 
+   }
+
+   .coupon > button, .coupon > .size, .coupon > .space {
+       width: auto; 
+       margin-bottom :10px ;
+   }
+}
+
+@media (max-width: 392px){
+   
+    .products{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        
+      
+       
+        }
+    .product-list{
+        display: flex;
+        flex-direction: column;
+        box-shadow: none;
+        margin-left:0 ;
+        margin-right: 0;
+        padding-right: 0;
+
+    }
+    .prolist{
+        margin-top: 5rem;
+      padding-left: 0;
+      padding-right: 3rem;
+    }
+    .prolist > .price{
+       margin-left: 0;
+
+    }
+   .selected{
+   
+   padding-left: 0;
+   margin-bottom: 1rem;
+   
+   }
+   .selected > .items > input{
+    width: 30px;
+    height: 25px;
+   }
+    .product-list > .item > p {
+        
+        left: 0;
+        top: 0;
+    }
+    
+}
+    

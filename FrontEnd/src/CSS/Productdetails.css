@@ -1,0 +1,379 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin-right: auto;
+    font-family: "sora", serif;
+    font-weight: 500;
+}
+.sub-nav {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 5%;
+    margin-left: 100px;
+    margin-bottom: 5px;
+  }
+.main {
+    margin-left: 100px;
+    position: relative;
+    top: 90px;
+}
+
+.main > .image1,
+.main > .image2,
+.main > .image3,
+.main > .image4 {
+    background: whitesmoke;
+    width: 150px;
+    padding: 10px;
+    margin-top: 10px; 
+}
+
+.main > .image5 {
+    
+    position: relative;
+    left: 200px;
+    bottom: 536px;
+    background: whitesmoke;
+    width: 500px;
+    height: 33.7rem;
+    padding-top: 150px;
+    padding-left: 20px;
+}
+.space.selected {
+    background-color: #004f7d; /* Change background color */
+    color:green /* Change text color */
+}
+#check-delivery-btn{
+    background-color: #004f7d;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+.items {
+    position: relative;
+}
+
+.item {
+    position: relative;
+    display: inline-block; /* Ensure items are inline */
+}
+
+.add-to-cart {
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none; /* Initially hidden */
+    cursor: pointer;
+}
+
+.item:hover .add-to-cart {
+    display: block; /* Show on hover */
+}
+
+.checked {
+    color: orange;
+}
+
+.discription {
+    margin-left: 770px;
+    position: relative;
+    bottom: 67rem;
+    padding-right: 65px;
+}
+
+.description > p,
+h3,
+h4,
+.head {
+    margin-top: 20px;
+}
+
+.discription > .choice {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.discription > .choice > input > #blue {
+    color: blue;
+}
+
+.discription > .choice > input > #red {
+    color: red;
+}
+
+.discription > .size .space {
+    margin-left: 10px;
+    background: transparent;
+    padding-right: 0.6rem;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+
+.discription > .spin {
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.discription > .addcart {
+    margin-left: 40px;
+    padding: 10px 50px;
+    background: transparent;
+    background-color: #004f7d;
+    border-radius: 0.2rem;
+    color: white;
+    cursor: pointer;
+}
+
+.discription > .delivery {
+    margin-top: 2rem;
+    box-sizing: content-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: fit-content;
+}
+
+.discription > .delivery > a:hover {
+    color: #00a9e3;
+}
+
+.discription > .addcart:hover {
+    background-color: #00a9e3;
+    border: none;
+}
+
+.items > h4 {
+    display: flex;
+   position: relative;
+   bottom: 9rem;
+    background-color:#004f7d ;
+    width: 8px; 
+}
+
+h4 {
+    color:#004f7d ;
+   padding-left: 10px; 
+   height: 35px; 
+}
+
+.items {
+    display: flex; 
+    position:relative; 
+    bottom: 45rem; 
+}
+
+.items > .item > img {
+    background: whitesmoke; 
+    margin: 20px; 
+    padding: 15px; 
+    border-radius: 0.2rem; 
+}
+
+.items > .item > .content {
+    margin: 20px; 
+}
+
+.items > .item > .love, .eye {
+    justify-content: flex-end;
+    position:relative; 
+    right: 5.2rem; 
+    bottom: 13rem; 
+    background:white; 
+    border-radius:100%; 
+    padding: 5px; 
+}
+
+/* Media Queries */
+@media (min-width: 1201px) and (max-width: 1391px) {
+    
+    
+   
+   .items > .item > .eye {
+       left:13rem ; 
+       bottom: rem;
+       padding:auto; 
+   }
+   .items > .item > .love{
+        
+       left: 1rem;
+     
+   }
+}
+
+   
+   
+
+
+
+  @media (max-width: 1200px) {
+    .main {
+        margin-left: 50px; 
+        top: 70px; 
+    }
+    
+    .discription {
+        margin-left: auto; 
+        margin-right: auto; 
+        bottom: auto; 
+        padding-right: 30px; 
+        width: auto; 
+        text-align: center; 
+    }
+
+    .items {
+        flex-direction: column; 
+        bottom: auto; 
+        align-items: center; 
+    }
+
+    .main > .image5 {
+        left: auto;
+        bottom: auto;
+        width: auto; 
+        height:auto;
+        padding-top:auto; 
+        padding-left:auto; 
+        margin-bottom:20px; 
+        
+   }
+   .item{
+    height: max-content;
+    margin-bottom: 2rem;
+}
+.items > h4 {
+    display: flex;
+   position: relative;
+   bottom: 0.4rem;
+   font-size: medium;
+    background-color:#004f7d ;
+    width: 8px; 
+}
+}
+
+@media (max-width: 768px) {
+   .main {
+       margin-left: 20px; 
+       top: 50px; 
+   }
+
+   .main > .image1,
+   .main > .image2,
+   .main > .image3,
+   .main > .image4,
+   .main > .image5 {
+       width: 100%; 
+       padding-left :10px ;
+    }
+ 
+    .discription {
+        margin-left :10px ; 
+        padding-right :10px ; 
+    }
+ 
+    h4 {
+        font-size :1.5rem ; 
+    }
+    
+    .discription > .addcart {
+        margin-left :0 ;
+        width :100% ; 
+        padding :10px ;        
+    }
+    
+ }
+ 
+ @media (max-width: 480px) {
+    body {
+        font-size :14px ; 
+    }
+ 
+    h4 {
+        font-size :1.2rem ; 
+    }
+ 
+    .discription, .main, .items {
+        flex-direction :column ; 
+        justify-content: center;
+        text-align :center ; 
+    }
+    .main > .image1,
+   .main > .image2,
+   .main > .image3,
+   .main > .image4,
+   .main >.image5
+    {
+    
+       width: 100%;
+       padding-left :10px ; 
+       
+    }
+    .main >.image5 > img{
+        width: 300px;
+
+    }
+   
+ }
+ @media (max-width: 360px) {
+    body {
+        font-size: 12px; 
+    }
+    .main > .image1,
+   .main > .image2,
+   .main > .image3,
+   .main > .image4
+    {
+       width: 100%;
+       padding-left :10px ; 
+    }
+    .main > .image5 > img{
+        width: 250px;
+    }
+    
+ 
+    h4 {
+        font-size: 1rem; 
+    }
+ 
+    .main {
+        margin-left: 10px; 
+        top: 40px; 
+    }
+ 
+    .discription {
+        
+        text-align: left; 
+    }
+ 
+    .items {
+        flex-direction: column;
+        align-items: stretc; 
+    }
+ 
+    .items > .item > img {
+        
+        max-width: none;
+    }
+ 
+    .discription > .addcart {
+        padding: 8px; 
+        font-size: 12px; 
+    }
+    
+
+    .sub-nav{
+        font-size: 12px;
+        margin-left: 0;
+    }
+ }
+
+
+ 
