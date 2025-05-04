@@ -1,76 +1,98 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
 from django.contrib.auth import authenticate, login, logout
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.hashers import make_password
+from django.shortcuts import get_object_or_404
 from .models import User, SellerVerification
-import json
+from .serializers import (
+    UserSerializer, RegisterSerializer, LoginSerializer, LogoutSerializer,
+    UpdateUserSerializer, ResetPasswordSerializer, SellerVerificationSerializer
+)
 
-@csrf_exempt
-def register(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        user = User.objects.create(
-            username=data['username'],
-            email=data['email'],
-            password=make_password(data['password']),
-        )
-        return JsonResponse({'message': 'User registered successfully'}, status=201)
+class RegisterView(APIView):
+    @swagger_auto_schema(request_body=RegisterSerializer)
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = User.objects.create(
+                username=serializer.validated_data['username'],
+                email=serializer.validated_data['email']
+            )
+            user.set_password(serializer.validated_data['password'])
+            user.save()
+            return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@csrf_exempt
-def login_view(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        user = authenticate(username=data['username'], password=data['password'])
-        if user:
-            login(request, user)
-            return JsonResponse({'message': 'Login successful'}, status=200)
-        return JsonResponse({'error': 'Invalid credentials'}, status=400)
 
-@csrf_exempt
-def logout_view(request):
-    if request.method == 'POST':
+class LoginView(APIView):
+    @swagger_auto_schema(request_body=LoginSerializer)
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = authenticate(
+                username=serializer.validated_data['username'],
+                password=serializer.validated_data['password']
+            )
+            if user:
+                login(request, user)
+                return Response({'message': 'Login successful'})
+            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogoutView(APIView):
+    @swagger_auto_schema(request_body=LogoutSerializer)
+    def post(self, request):
         logout(request)
-        return JsonResponse({'message': 'Logout successful'}, status=200)
+        return Response({'message': 'Logout successful'}, status=status.HTTP_200_OK)
 
-def get_user_by_id(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    return JsonResponse({
-        'id': user.id,
-        'username': user.username,
-        'email': user.email,
-        'is_seller': user.is_seller,
-        'is_verified': user.is_verified,
-    }, status=200)
 
-@csrf_exempt
-def update_user(request, user_id):
-    if request.method == 'PUT':
-        data = json.loads(request.body)
+class GetUserByIdView(APIView):
+    def get(self, request, user_id):
         user = get_object_or_404(User, id=user_id)
-        user.username = data.get('username', user.username)
-        user.email = data.get('email', user.email)
-        user.save()
-        return JsonResponse({'message': 'User updated successfully'}, status=200)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
-def get_all_users(request):
-    users = User.objects.all().values('id', 'username', 'email', 'is_seller', 'is_verified')
-    return JsonResponse(list(users), safe=False, status=200)
 
-@csrf_exempt
-def verify_seller(request, user_id):
-    if request.method == 'POST':
+class UpdateUserView(APIView):
+    @swagger_auto_schema(request_body=UpdateUserSerializer)
+    def put(self, request, user_id):
+        user = get_object_or_404(User, id=user_id)
+        serializer = UpdateUserSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            # Update the user with partial data
+            user.username = serializer.validated_data.get('username', user.username)
+            user.email = serializer.validated_data.get('email', user.email)
+            user.save()
+            return Response({'message': 'User updated successfully'})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class GetAllUsersView(APIView):
+    def get(self, request):
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
+
+
+class VerifySellerView(APIView):
+    @swagger_auto_schema(request_body=SellerVerificationSerializer)
+    def post(self, request, user_id):
         user = get_object_or_404(User, id=user_id)
         if not user.is_seller:
-            return JsonResponse({'error': 'User is not a seller'}, status=400)
+            return Response({'error': 'User is not a seller'}, status=status.HTTP_400_BAD_REQUEST)
         SellerVerification.objects.create(user=user, document_status='Pending')
-        return JsonResponse({'message': 'Seller verification initiated'}, status=201)
+        return Response({'message': 'Seller verification initiated'}, status=status.HTTP_201_CREATED)
 
-@csrf_exempt
-def reset_password(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        user = get_object_or_404(User, email=data['email'])
-        user.password = make_password(data['new_password'])
-        user.save()
-        return JsonResponse({'message': 'Password reset successfully'}, status=200)
+
+class ResetPasswordView(APIView):
+    @swagger_auto_schema(request_body=ResetPasswordSerializer)
+    def post(self, request):
+        serializer = ResetPasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            user = get_object_or_404(User, email=serializer.validated_data['email'])
+            user.set_password(serializer.validated_data['new_password'])
+            user.save()
+            return Response({'message': 'Password reset successfully'})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

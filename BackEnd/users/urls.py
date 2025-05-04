@@ -1,13 +1,16 @@
 from django.urls import path
-from . import views
+from .views import (
+    RegisterView, LoginView, LogoutView, GetUserByIdView,
+    UpdateUserView, GetAllUsersView, VerifySellerView, ResetPasswordView,
+)
 
 urlpatterns = [
-    path('register/', views.register, name='register'),
-    path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
-    path('users/<int:user_id>/', views.get_user_by_id, name='get_user_by_id'),
-    path('users/<int:user_id>/update/', views.update_user, name='update_user'),
-    path('users/', views.get_all_users, name='get_all_users'),
-    path('users/<int:user_id>/verify-seller/', views.verify_seller, name='verify_seller'),
-    path('reset-password/', views.reset_password, name='reset_password'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('user/<int:user_id>/', GetUserByIdView.as_view(), name='get_user_by_id'),
+    path('user/<int:user_id>/update/', UpdateUserView.as_view(), name='update_user'),
+    path('users/', GetAllUsersView.as_view(), name='get_all_users'),
+    path('verify-seller/<int:user_id>/', VerifySellerView.as_view(), name='verify_seller'),
+    path('reset-password/', ResetPasswordView.as_view(), name='reset_password'),
 ]
