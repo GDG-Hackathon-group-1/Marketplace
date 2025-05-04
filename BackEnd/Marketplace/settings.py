@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     # Local apps
     'products',
     'messaging',
-    'users',
+    'bidding',
 ]
 
 MIDDLEWARE = [
@@ -72,15 +72,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Marketplace.wsgi.application'
 ASGI_APPLICATION = 'Marketplace.asgi.application'
 
-# Database - Choose PostgreSQL for production, SQLite for development
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # use 'sqlite3' for local dev if needed
-        'NAME': BASE_DIR / 'db.postgres',           # change as appropriate
-        # 'USER': 'your_db_user',
-        # 'PASSWORD': 'your_db_password',
-        # 'HOST': 'localhost',
-        # 'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

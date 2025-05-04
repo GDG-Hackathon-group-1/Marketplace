@@ -1,4 +1,3 @@
-# utils/image_upload_service.py
 import os
 from uuid import uuid4
 from PIL import Image
@@ -13,11 +12,9 @@ class ImageUploadService:
         path = os.path.join(folder, filename)
         full_path = os.path.join(settings.MEDIA_ROOT, path)
 
-        # Ensure folder exists
         os.makedirs(os.path.dirname(full_path), exist_ok=True)
 
-        # Save compressed image
         image = Image.open(image_file)
         image.convert('RGB').save(full_path, optimize=True, quality=quality)
 
-        return default_storage.url(path)  # returns MEDIA_URL + path
+        return default_storage.url(path)

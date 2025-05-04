@@ -1,4 +1,3 @@
-# utils/ml_model_handler.py
 import os
 import numpy as np
 from PIL import Image

@@ -1,9 +1,6 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.contrib.auth import get_user_model
-from product.models import Product  # adjust if your Product model is elsewhere
+from products.models import Product
 from django.utils import timezone
 
 
