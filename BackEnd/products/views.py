@@ -52,8 +52,8 @@ class MLModelHandler:
         recommendations.update(wishlist_products)
 
         most_reviewed = Product.objects.annotate(
-            review_count=Count('reviews')
-        ).order_by('-review_count')[:5]
+            num_reviews=Count('reviews')
+        ).order_by('-num_reviews')[:5]
         recommendations.update(most_reviewed)
 
         highest_rated = Product.objects.annotate(
@@ -124,7 +124,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
         review = serializer.save(user=self.request.user, product_id=self.kwargs['product_pk'])
         product = review.product
         product_reviews = product.reviews.all()
-        product.review_count = product_reviews.count()
+        product.num_reviews = product_reviews.count()
         product.average_rating = product_reviews.aggregate(avg=Avg('rating'))['avg'] or 0
         product.save()
         return Response(serializer.data)
