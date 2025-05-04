@@ -16,6 +16,15 @@ const calculateDistance = (loc1, loc2) => {
 	return R * c
 }
 
+const moveLocation = (lat, lng, metersNorth = 0, metersEast = 0) => {
+	const earthRadius = 6378137
+	const newLat = lat + (metersNorth / earthRadius) * (180 / Math.PI)
+	const newLng =
+		lng +
+		(metersEast / (earthRadius * Math.cos((Math.PI * lat) / 180))) *
+			(180 / Math.PI)
+	return { lat: newLat, lng: newLng }
+}
 export default function DeliveryTracking() {
 	const [receiverLocation, setReceiverLocation] = useState(null)
 	const [deliveryGuyLocation, setDeliveryGuyLocation] = useState(null)
@@ -29,6 +38,14 @@ export default function DeliveryTracking() {
 					const { latitude, longitude } = position.coords
 					const userLoc = { lat: latitude, lng: longitude }
 					setReceiverLocation(userLoc)
+
+					const deliveryLoc = moveLocation(
+						latitude,
+						longitude,
+						-10,
+						-8
+					)
+					setDeliveryGuyLocation(deliveryLoc)
 				},
 				(error) => {
 					console.error('Geolocation error:', error)
@@ -94,13 +111,40 @@ export default function DeliveryTracking() {
 			<div className="h-72">
 				<MapContainer
 					center={receiverLocation || defaultCenter}
-					zoom={15}
-					style={{ height: '100%', width: '100%' }}
+					zoom={18}
+					style={{ height: '100%', width: '100%', zIndex: -10 }}
 				>
 					<TileLayer
 						attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					/>
+					{deliveryGuyLocation && (
+						<>
+							<MapAutoCenter
+								position={[
+									deliveryGuyLocation.lat,
+									deliveryGuyLocation.lng,
+								]}
+							/>
+							<Marker
+								position={[
+									deliveryGuyLocation.lat,
+									deliveryGuyLocation.lng,
+								]}
+							/>
+						</>
+					)}
+					{receiverLocation && (
+						<Marker
+							position={[
+								receiverLocation.lat,
+								receiverLocation.lng,
+							]}
+						/>
+					)}
+					{route.length > 0 && (
+						<Polyline positions={route} color="green" weight={4} />
+					)}
 				</MapContainer>
 			</div>
 
@@ -109,13 +153,20 @@ export default function DeliveryTracking() {
 					<div className="flex justify-between items-center mb-4">
 						<h2 className="font-semibold text-lg">Your Delivery</h2>
 						<span className="bg-green-100 text-green-700 text-sm px-3 py-1 rounded-full">
-							In Progress
+							Arriving soon
 						</span>
 					</div>
+
 					<div className="grid grid-cols-2 gap-4 text-sm">
 						<div>
 							<p className="text-gray-500">ETA</p>
 							<p className="font-medium">Less than a minute</p>
+						</div>
+						<div>
+							<p className="text-gray-500">Distance</p>
+							<p className="font-medium">
+								{distance ? `${distance} km` : 'Calculating...'}
+							</p>
 						</div>
 						<div>
 							<p className="text-gray-500">Delivery Location</p>
