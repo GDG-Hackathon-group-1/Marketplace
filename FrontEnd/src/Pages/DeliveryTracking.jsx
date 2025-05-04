@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-export default function App() {
+export default function DeliveryTracking() {
 	const defaultCenter = { lat: 9.03, lng: 38.74 }
 	const [userLocation, setUserLocation] = useState(null)
 
