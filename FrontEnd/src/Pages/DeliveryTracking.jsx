@@ -40,6 +40,35 @@ export default function DeliveryTracking() {
 					<Marker position={userLocation || defaultCenter} />
 				</MapContainer>
 			</div>
+
+			<div className="p-4">
+				<div className="bg-white shadow rounded p-6">
+					<div className="flex justify-between items-center mb-4">
+						<h2 className="font-semibold text-lg">Your Delivery</h2>
+						<span className="bg-green-100 text-green-700 text-sm px-3 py-1 rounded-full">
+							In Progress
+						</span>
+					</div>
+					<div className="grid grid-cols-2 gap-4 text-sm">
+						<div>
+							<p className="text-gray-500">ETA</p>
+							<p className="font-medium">Less than a minute</p>
+						</div>
+						<div>
+							<p className="text-gray-500">Delivery Location</p>
+							<p className="font-medium">Your Location</p>
+						</div>
+						<div>
+							<p className="text-gray-500">Order</p>
+							<p className="font-medium">Lunch Box Special</p>
+						</div>
+					</div>
+
+					<button className="mt-6 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+						Contact Driver
+					</button>
+				</div>
+			</div>
 		</div>
 	)
 }
