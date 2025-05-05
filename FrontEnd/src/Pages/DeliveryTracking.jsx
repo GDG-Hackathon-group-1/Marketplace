@@ -167,9 +167,6 @@ export default function App() {
 							]}
 						/>
 					)}
-					{route.length > 0 && (
-						<Polyline positions={route} color="green" weight={4} />
-					)}
 				</MapContainer>
 			</div>
 
