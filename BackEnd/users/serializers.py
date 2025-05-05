@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import User, SellerVerification
 
-<<<<<<< HEAD
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -15,21 +14,20 @@ class LoginSerializer(serializers.Serializer):
 class PasswordResetSerializer(serializers.Serializer):
     email = serializers.EmailField()
     new_password = serializers.CharField()
-=======
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'username', 'profile_image', 'is_seller', 'is_verified', 'created_at']
 
->>>>>>> 0b8848986244a98ad3938eda629f00e51fe2a3ff
 
 class SellerVerificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = SellerVerification
-<<<<<<< HEAD
+
         fields = '__all__'
-=======
+
         fields = ['user', 'document_status', 'submitted_at']
 
 
@@ -57,4 +55,3 @@ class UpdateUserSerializer(serializers.Serializer):
 class LogoutSerializer(serializers.Serializer):
     # No input fields are required for logout, but serializer is added for Swagger docs
     pass
->>>>>>> 0b8848986244a98ad3938eda629f00e51fe2a3ff

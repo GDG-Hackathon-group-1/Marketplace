@@ -29,13 +29,11 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     path('api/', include('bidding.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('products.urls')),
     path('', include('users.urls')),
-=======
->>>>>>> 0b8848986244a98ad3938eda629f00e51fe2a3ff
+
 
     # Modular API route structure
     path('api/products/', include('products.urls')),

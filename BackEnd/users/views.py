@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from rest_framework import status, generics, views
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -24,7 +24,7 @@ class RegisterView(generics.CreateAPIView):
 class LoginView(views.APIView):
     permission_classes = [AllowAny]
 
-=======
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -54,7 +54,7 @@ class RegisterView(APIView):
 
 class LoginView(APIView):
     @swagger_auto_schema(request_body=LoginSerializer)
->>>>>>> 0b8848986244a98ad3938eda629f00e51fe2a3ff
+
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
@@ -64,7 +64,7 @@ class LoginView(APIView):
             )
             if user:
                 login(request, user)
-<<<<<<< HEAD
+
                 return Response({'message': 'Login successful'}, status=200)
             return Response({'error': 'Invalid credentials'}, status=400)
         return Response(serializer.errors, status=400)
@@ -122,10 +122,8 @@ class ResetPasswordView(views.APIView):
             user.save()
             return Response({'message': 'Password reset successful'}, status=200)
         return Response(serializer.errors, status=400)
-=======
-                return Response({'message': 'Login successful'})
-            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
 
 
 class LogoutView(APIView):
@@ -183,4 +181,4 @@ class ResetPasswordView(APIView):
             user.save()
             return Response({'message': 'Password reset successfully'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
->>>>>>> 0b8848986244a98ad3938eda629f00e51fe2a3ff
+ 
