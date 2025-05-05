@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
     # Third-party
     'rest_framework',
+    'rest_framework_simplejwt',
     'django_celery_beat',
     'channels',
     'drf_yasg',
@@ -143,6 +144,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+<<<<<<< HEAD
 AUTH_USER_MODEL = 'users.User'
 
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'http://localhost']
+=======
+AUTH_USER_MODEL = 'users.User'
+>>>>>>> 0b8848986244a98ad3938eda629f00e51fe2a3ff
