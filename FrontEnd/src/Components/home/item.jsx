@@ -8,15 +8,15 @@ const ItemSales = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const { data, error } = await supabase
-        .from("itemdetail")
-        .select("*")
-        .order("itemId", { ascending: false });
-
-      if (error) {
-        console.error("Fetch error:", error);
-      } else {
+      try {
+        const response = await fetch("http://localhost:8000/api/products/");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
         setItems(data);
+      } catch (error) {
+        console.error("Fetch error:", error);
       }
     };
 
@@ -26,7 +26,7 @@ const ItemSales = () => {
   return (
     <section className="item-sales">
       {items.map((item) => (
-        <div className="item-card" key={item.itemId}>
+        <div className="item-card" key={item.id}>
           <div className="item-upper">
             <div className="item-image">
               <div className="icons">
@@ -39,7 +39,7 @@ const ItemSales = () => {
               </div>
               <img
                 className="item-img"
-                src={`http://localhost/aastu-marketplace/uploads/${item.itemProfile}`}
+                src={`http://localhost:8000/uploads/${item.itemProfile}`}
                 alt="product"
               />
             </div>

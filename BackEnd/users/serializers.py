@@ -11,6 +11,9 @@ class UserSerializer(serializers.ModelSerializer):
 class SellerVerificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = SellerVerification
+
+        fields = '__all__'
+
         fields = ['user', 'document_status', 'submitted_at']
 
 
