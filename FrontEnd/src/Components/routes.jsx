@@ -11,6 +11,9 @@ import Wishlist from "../Pages/Wishlist";
 import About from "../Pages/About";
 import Profile from "../Pages/Profile";
 import ThankYouPage from "../Pages/Thankyou";
+import { LogIn } from "lucide-react";
+import { Registration } from "../Pages/Registration";
+import LoginPage from "../Pages/login";
 
 const routes = createBrowserRouter([
   {
@@ -25,6 +28,8 @@ const routes = createBrowserRouter([
       { path: "/wishlist", element: <Wishlist /> },
       { path: "/about", element: <About /> },
       { path: "/profile", element: <Profile /> },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/signup", element: <Registration /> },
       { path: "/Thankyou", element: <ThankYouPage /> },
 
       { path: "cart", element: <Cart /> },

@@ -25,8 +25,8 @@ const Footer = () => {
       <div className="account-container">
         <h2>Account</h2>
         <h3>
-          <a href="/Log in Page/login.html">Login</a> /
-          <a href="/Sign up page/signup.html">Register</a>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Sign Up</Link>
         </h3>
         <h3>
           <a href="/Cart Page/index.html">Cart</a>
