@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { supabase } from "../../supabaseClient"; // adjust path if needed
 
 const PostModal = () => {
   const [itemName, setItemName] = useState("");
@@ -15,37 +14,24 @@ const PostModal = () => {
     try {
       setLoading(true);
 
-      /* ---------- 1️⃣  upload image to Supabase Storage ---------- */
-      const fileExt = itemImage.name.split(".").pop();
-      const fileName = `${Date.now()}_${itemName}.${fileExt}`;
-      const filePath = `public/${fileName}`;
+      // Prepare form data
+      const formData = new FormData();
+      formData.append("itemName", itemName);
+      formData.append("itemDescription", itemDescription);
+      formData.append("itemPrice", itemPrice);
+      formData.append("itemImage", itemImage);
 
-      const { error: uploadErr } = await supabase.storage
-        .from("uploads")
-        .upload(filePath, itemImage);
+      // Send POST request to your API
+      const res = await fetch("http://localhost:8000/api/items/", {
+        method: "POST",
+        body: formData,
+      });
 
-      if (uploadErr) throw uploadErr;
-
-      /* ---------- 2️⃣  get the public URL of that image ---------- */
-      const { data } = supabase.storage.from("uploads").getPublicUrl(filePath);
-
-      const imageUrl = data.publicUrl;
-
-      /* ---------- 3️⃣  insert row into itemdetail table ---------- */
-      const { error: insertErr } = await supabase.from("itemdetail").insert([
-        {
-          itemName,
-          itemDescription,
-          itemPrice: parseFloat(itemPrice),
-          itemRate: 0,
-          itemProfile: imageUrl,
-        },
-      ]);
-
-      if (insertErr) throw insertErr;
+      if (!res.ok) throw new Error("Failed to upload item");
 
       alert("Item uploaded successfully ✅");
-      // clear form
+
+      // Clear form
       setItemName("");
       setItemDescription("");
       setItemPrice("");
