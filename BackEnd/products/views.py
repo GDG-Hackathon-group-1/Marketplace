@@ -47,7 +47,7 @@ class MLModelHandler:
         recommendations = set()
 
         wishlist_products = Product.objects.filter(
-            id__in=Wishlist.objects.filter(user=user).values_list('product_id', flat=True)
+            id__in=Wishlist.objects.filter(user=user).values_list('product_pk', flat=True)
         )[:5]
         recommendations.update(wishlist_products)
 
@@ -62,7 +62,7 @@ class MLModelHandler:
         recommendations.update(highest_rated)
 
         interacted_categories = Product.objects.filter(
-            id__in=Wishlist.objects.filter(user=user).values_list('product_id', flat=True)
+            id__in=Wishlist.objects.filter(user=user).values_list('product_pk', flat=True)
         ).values_list('category', flat=True)
 
         content_based = Product.objects.filter(
@@ -128,7 +128,6 @@ class ReviewViewSet(viewsets.ModelViewSet):
         product.average_rating = product_reviews.aggregate(avg=Avg('rating'))['avg'] or 0
         product.save()
         return Response(serializer.data)
-    
 
 class WishlistViewSet(viewsets.ModelViewSet):
     serializer_class = WishlistSerializer

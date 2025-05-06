@@ -1,5 +1,7 @@
+from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 from django.contrib.auth import authenticate, login, logout
@@ -43,7 +45,7 @@ class LoginView(APIView):
         return Response(serializer.errors, status=400)
 
 
-class LogoutView(views.APIView):
+class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -73,7 +75,7 @@ class GetAllUsersView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class VerifySellerView(views.APIView):
+class VerifySellerView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, user_id):
@@ -84,7 +86,7 @@ class VerifySellerView(views.APIView):
         return Response({'message': 'Seller verification initiated'}, status=201)
 
 
-class ResetPasswordView(views.APIView):
+class ResetPasswordView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):

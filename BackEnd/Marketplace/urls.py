@@ -15,29 +15,26 @@ def home(request):
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Social Media App API",
+        title="Marketplace API",
         default_version='v1',
         description="API documentation for the Social Media App",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="your@email.com"),
-        license=openapi.License(name="BSD License"),
+        license=openapi.License(name="MIT"),
     ),
     public=True,
-    permission_classes=(AllowAny,),
 )
 
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
 
-    # Modular API route structure
-    path('api/products/', include('products.urls')),
-    path('api/bidding/', include('bidding.urls')),
-    path('api/messaging/', include('messaging.urls')),
-    path('api/users/', include('users.urls')),
+    path('', include('products.urls')),
+    path('', include('bidding.urls')),
+    path('messaging/', include('messaging.urls')),
+    path('', include('users.urls')),
 
     # Swagger and Redoc
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
