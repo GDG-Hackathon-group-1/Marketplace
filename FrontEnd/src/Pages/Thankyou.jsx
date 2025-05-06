@@ -22,7 +22,10 @@ function ThankYouPage() {
 			<br />
 			<br />
 			<h2>You will be redirected to the homepage shortly.</h2>
-			<div className="order" id="order">
+			<div
+				className="mt-6 w-fit bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+				id=""
+			>
 				<Link to="delivery-tracking">Delivery Tracking</Link>
 			</div>
 		</div>
