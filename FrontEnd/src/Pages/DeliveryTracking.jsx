@@ -6,7 +6,17 @@ import {
 	Polyline,
 	useMap,
 } from 'react-leaflet'
+import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+
+// Fix leaflet's default icon paths
+delete L.Icon.Default.prototype._getIconUrl
+
+L.Icon.Default.mergeOptions({
+	iconRetinaUrl: '/images/marker-icon-2x.png',
+	iconUrl: '/images/marker-icon.png',
+	shadowUrl: '/images/marker-shadow.png',
+})
 
 function MapAutoCenter({ position }) {
 	const map = useMap()
@@ -44,7 +54,7 @@ const calculateDistance = (loc1, loc2) => {
 	return R * c
 }
 
-export default function App() {
+export default function DeliveryTracking() {
 	const [receiverLocation, setReceiverLocation] = useState(null)
 	const [deliveryGuyLocation, setDeliveryGuyLocation] = useState(null)
 	const [route, setRoute] = useState([])
